@@ -7,7 +7,12 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
+<<<<<<< HEAD
     "semantic-ui": "^2.4.2"
+=======
+    "semantic-ui": "^2.3.3",
+    "semantic-ui-react": "^0.82.1"
+>>>>>>> 374c46507e47ac44946435e0756c0ec724b05bb5
   },
   "scripts": {
     "start": "react-scripts start",
