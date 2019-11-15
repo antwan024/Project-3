@@ -2,10 +2,11 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 
 const items = [
-  { key: 'editorials', active: true, name: 'Editorials' },
-  { key: 'review', name: 'Reviews' },
-  { key: 'events', name: 'Upcoming Events' },
+  { key: 'Home', active: true, name: 'Home' },
+  { key: 'Activity', name: 'Activity' },
+  { key: 'LogIn', name: 'LogIn' },
 ]
+
 
 const MenuExampleProps = () => <Menu items={items} />
 

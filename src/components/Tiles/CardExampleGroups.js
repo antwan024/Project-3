@@ -8,21 +8,20 @@ const CardExampleGroups = () => (
         <Image
           floated='right'
           size='mini'
-          src='/images/avatar/large/steve.jpg'
         />
-        <Card.Header>Steve Sanders</Card.Header>
-        <Card.Meta>Friends of Elliot</Card.Meta>
+        <Card.Header>Task</Card.Header>
+        <Card.Meta>User</Card.Meta>
         <Card.Description>
-          Steve wants to add you to the group <strong>best friends</strong>
+          Assigned by<strong>PlaceHolder</strong>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
-            Approve
+            edit
           </Button>
           <Button basic color='red'>
-            Decline
+            Delete
           </Button>
         </div>
       </Card.Content>
@@ -32,21 +31,20 @@ const CardExampleGroups = () => (
         <Image
           floated='right'
           size='mini'
-          src='/images/avatar/large/molly.png'
         />
-        <Card.Header>Molly Thomas</Card.Header>
-        <Card.Meta>New User</Card.Meta>
+        <Card.Header>Task</Card.Header>
+        <Card.Meta>User</Card.Meta>
         <Card.Description>
-          Molly wants to add you to the group <strong>musicians</strong>
+          Assigned by <strong>Place Holder</strong>
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
-            Approve
+            Edit
           </Button>
           <Button basic color='red'>
-            Decline
+            Delete
           </Button>
         </div>
       </Card.Content>
@@ -56,21 +54,20 @@ const CardExampleGroups = () => (
         <Image
           floated='right'
           size='mini'
-          src='/images/avatar/large/jenny.jpg'
         />
-        <Card.Header>Jenny Lawrence</Card.Header>
-        <Card.Meta>New User</Card.Meta>
+        <Card.Header>Task</Card.Header>
+        <Card.Meta>User</Card.Meta>
         <Card.Description>
-          Jenny requested permission to view your contact details
+          Assigned by
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
           <Button basic color='green'>
-            Approve
+            Edit
           </Button>
           <Button basic color='red'>
-            Decline
+            Delete
           </Button>
         </div>
       </Card.Content>
