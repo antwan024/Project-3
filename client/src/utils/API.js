@@ -16,5 +16,18 @@ export default {
   // Saves a achievment to the database
   saveAchievement: function(achievmentData) {
     return axios.post("/api/achievements", achievmentData);
+  },
+  getEvents: function() {
+    return axios.get("/api/events");
+  },
+  getEvent: function(id) {
+    return axios.get("/api/events/" + id);
+  },
+  deleteEvent: function(id) {
+    return axios.delete("/api/events/" + id);
+  },
+  saveEvent: function(eventData) {
+    return axios.post("/api/events", eventData);
   }
+
 };

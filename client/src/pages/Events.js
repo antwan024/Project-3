@@ -1,35 +1,36 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
+import {Dropdown, List, ListItem} from "../components/List";
+import DeleteBtn from "../components/DeleteBtn";
+import { Link } from "react-router-dom";
 
-class Books extends Component {
+class Events extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    events: [],
+    eventPoints: 0,
+    summary: "",
+    date: "",
+    voucherCode: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadEvents();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadEvents = () => {
+    API.getEvents()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ events: res.data, eventPoints: 0, summary: "", date: "", voucherCode: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteEvent = id => {
+    API.deleteEvent(id)
+      .then(res => this.loadEvents())
       .catch(err => console.log(err));
   };
 
@@ -42,13 +43,14 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.summary) {
+      API.saveEvent({
+        summary: this.state.summary,
+        date: this.state.date,
+        voucherCode: this.state.voucherCode,
+        eventPoints: this.state.eventPoints
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadEvents())
         .catch(err => console.log(err));
     }
   };
@@ -63,29 +65,30 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.summary}
                 onChange={this.handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                value={this.state.author}
-                onChange={this.handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="summary"
+                placeholder="Summary (required)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                // disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
-              >
-                Submit Book
-              </FormBtn>
+              >Submit Book</FormBtn>
+
+<List>
+                {this.state.events.map(event => (
+                  <ListItem key={event._id}>
+                    <Link to={"/events/" + event._id}>
+                      <strong>
+                        Need: {event.eventPoints} {event.type}
+                        Achievement: {event.summary}
+                      </strong>
+                    </Link>
+                    <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
+                  </ListItem>
+                ))}
+              </List>
+              
             </form>
           </Col>
         </Row>
@@ -94,4 +97,5 @@ class Books extends Component {
   }
 }
 
-export default Books;
+
+export default Events;

@@ -14,3 +14,16 @@ export function List({ children }) {
 export function ListItem({ children }) {
   return <li className="list-group-item">{children}</li>;
 }
+
+export function Dropdown({ children }) {
+  return (
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Choose a task!</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01">
+        <option selected>{children}</option>
+      </select>
+    </div>
+  );
+}
