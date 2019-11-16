@@ -28,6 +28,9 @@ export default {
   },
   saveEvent: function(eventData) {
     return axios.post("/api/events", eventData);
+  },
+  saveUserEvent: function(eventData) {
+    return axios.post("/api/events", eventData);
   }
 
 };

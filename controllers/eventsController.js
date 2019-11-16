@@ -34,6 +34,12 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+    userEvent: function(req, res) {
+        db.userEvent
+            .create({ _id: req.params.id }, req.body)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     addPoints: function(req, res) {
         db.Event
             .aggregate(

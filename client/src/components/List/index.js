@@ -21,9 +21,15 @@ export function Dropdown({ children }) {
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Choose a task!</label>
       </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option selected>{children}</option>
-      </select>
+        <select class="custom-select" id="inputGroupSelect01">
+          {children}
+        </select>
     </div>
+  );
+}
+
+export function DropItem({children}) {
+  return (
+        <option selected>{children}</option>
   );
 }

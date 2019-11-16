@@ -3,7 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
-import {Dropdown, List, ListItem} from "../components/List";
+import {Dropdown, DropItem} from "../components/List";
 import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 
@@ -44,7 +44,7 @@ class Events extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.summary) {
-      API.saveEvent({
+      API.saveUserEvent({
         summary: this.state.summary,
         date: this.state.date,
         voucherCode: this.state.voucherCode,
@@ -55,11 +55,25 @@ class Events extends Component {
     }
   };
 
+  handleUserSubmit = event => {
+    event.preventDefault();
+    if (this.state.summary) {
+      API.saveUserEvent({
+        summary: this.state.summary,
+        eventPoints: this.state.eventPoints
+      })
+        .then(res => this.loadUserEvents())
+        .catch(err => console.log(err));
+    }
+  };
+
+
+
   render() {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+          <Col size="md-12">
             <Jumbotron>
               <h1>What Books Should I Read?</h1>
             </Jumbotron>
@@ -75,19 +89,23 @@ class Events extends Component {
                 onClick={this.handleFormSubmit}
               >Submit Book</FormBtn>
 
-<List>
+              <Dropdown>
                 {this.state.events.map(event => (
-                  <ListItem key={event._id}>
-                    <Link to={"/events/" + event._id}>
-                      <strong>
-                        Need: {event.eventPoints} {event.type}
-                        Achievement: {event.summary}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
-                  </ListItem>
+                  <DropItem key={event._id}>
+                    
+                      
+                        Need: {event.eventPoints} , {event.summary}
+                      
+                    
+                    {/* <DeleteBtn onClick={() => this.deleteEvent(event._id)} /> */}
+                  </DropItem>
                 ))}
-              </List>
+              </Dropdown>
+              {/* <FormBtn
+                // disabled={!(this.state.author && this.state.title)}
+                onClick={this.handleUserSubmit}
+              >Submit Task</FormBtn> */}
+              
               
             </form>
           </Col>
