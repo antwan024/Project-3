@@ -3,7 +3,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { Input, FormBtn } from "../components/Form";
-import {Dropdown, DropItem} from "../components/List";
+import {Dropdown, DropItem, List, ListItem} from "../components/List";
 import DeleteBtn from "../components/DeleteBtn";
 import { Link } from "react-router-dom";
 
@@ -44,7 +44,7 @@ class Events extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.summary) {
-      API.saveUserEvent({
+      API.saveEvent({
         summary: this.state.summary,
         date: this.state.date,
         voucherCode: this.state.voucherCode,
@@ -56,11 +56,10 @@ class Events extends Component {
   };
 
   handleUserSubmit = event => {
-    event.preventDefault();
+    
     if (this.state.summary) {
       API.saveUserEvent({
-        summary: this.state.summary,
-        eventPoints: this.state.eventPoints
+        summary: this.state.summary
       })
         .then(res => this.loadUserEvents())
         .catch(err => console.log(err));
@@ -74,9 +73,9 @@ class Events extends Component {
       <Container fluid>
         <Row>
           <Col size="md-12">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
+          <Jumbotron>
+              <h1>Better Yourself To Do's:</h1>
+          </Jumbotron>
             <form>
               <Input
                 value={this.state.summary}
@@ -101,13 +100,36 @@ class Events extends Component {
                   </DropItem>
                 ))}
               </Dropdown>
-              {/* <FormBtn
+              <FormBtn
                 // disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleUserSubmit}
-              >Submit Task</FormBtn> */}
+              >Submit Task</FormBtn>
               
               
             </form>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-12 sm-12">
+            
+            {this.state.events.length ? (
+              <List>
+                {this.state.events.map(event => (
+                  <ListItem key={event._id}>
+                    
+                      <strong>
+                        Need: {event.summary} {event.eventPoints}
+                        Achievement: {event.summary}
+                      </strong>
+                   
+                    {/* <DeleteBtn onClick={() => this.deleteEvent(event._id)} /> */}
+                    <DeleteBtn onClick={() => this.deleteEvent(event._id)} />
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
           </Col>
         </Row>
       </Container>

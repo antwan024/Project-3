@@ -61,7 +61,7 @@ class Achievement extends Component {
                         Achievement: {achievement.summary}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteAchievement(achievement._id)} />
+                    <h5 onClick={() => this.deleteAchievement(achievement._id)}  REDEEM />
                   </ListItem>
                 ))}
               </List>
